@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram>
+	<actors>
+		<actor name="SDK" icon="icons/sdk.svg"></actor>
+		<actor name="Client" icon="icons/client.svg"></actor>
+		<actor name="Merchant server" icon="icons/merchant.svg"></actor>
+		<actor name="API" icon="icons/api.svg"></actor>
+	</actors>
+	<actions>
+		<message from="Client" to="Merchant server" content="This is the message"></message>
+		<message from="Client" to="API" content="This is the message"></message>
+		<note actor="API" content="This is the message of this process and it's very long."></note>
+		<message from="SDK" to="Client" content="This is the message"></message>
+		<interactive-message from="Client" to="Merchant server" content="This is the message">
+			<modal><![CDATA[ 
+				<a href="http://tweakers.net">Close</a>
+				Some content that is quite long so we can also test if wrapping works properly and things like that 
+				]]> 
+			</modal>
+		</interactive-message>
+		<message from="Client" to="Merchant server" content="This is the message"></message>
+		<message from="Merchant server" to="Client" content="This is the message"></message>
+	</actions>
+</sequence-diagram>
