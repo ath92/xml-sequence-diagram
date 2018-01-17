@@ -7,18 +7,38 @@
 		<actor name="API" icon="icons/api.svg"></actor>
 	</actors>
 	<actions>
-		<message from="Client" to="Merchant server" content="This is the message"></message>
-		<message from="Client" to="API" content="This is the message"></message>
-		<note actor="API" content="This is the message of this process and it's very long."></note>
-		<message from="SDK" to="Client" content="This is the message"></message>
-		<interactive-message from="Client" to="Merchant server" content="This is the message">
+		<message from="Client" to="Merchant server" content="Start checkout process"></message>
+		<interactive-message from="Merchant server" to="API" content="Call /setup">
 			<modal><![CDATA[ 
-				<a href="http://tweakers.net">Close</a>
-				Some content that is quite long so we can also test if wrapping works properly and things like that 
+				<h3> Here is some data that shows the /setup call</h3>
 				]]> 
 			</modal>
 		</interactive-message>
-		<message from="Client" to="Merchant server" content="This is the message"></message>
-		<message from="Merchant server" to="Client" content="This is the message"></message>
+		<message from="API" to="Merchant server" content="return paymentData JSON"></message>
+		<message from="Merchant server" to="Client" content="forward paymentData"></message>
+		<interactive-message from="Client" to="SDK" content="pass paymentData to chckt.setup">
+			<modal><![CDATA[ 
+				Some content that is quite long so we can also test if wrapping works properly and things like that.
+				it <a href="#">also supports</a> <strong>HTML CONTENT</strong>
+				<h3>Which is kinda nice</h3> 
+				]]> 
+			</modal>
+		</interactive-message>
+		<message from="SDK" to="API" content="Authorize payment"></message>
+		<message from="API" to="SDK" content="return Authorization result"></message>
+		<note actor="SDK" content="Render payment methods and handle user input" offset-y="-100" offset-x="100"></note>
+		<message from="SDK" to="Client" content="fire chckt.beforeComplete hook"></message>
+		<note actor="SDK" content="Render result of the payment"></note>
+		<message from="Client" to="Merchant server" content="pass the payload to your server"></message>
+		<interactive-message from="Merchant server" to="API" content="call /verify with the payload">
+			<modal><![CDATA[ 
+				Some content that is quite long so we can also test if wrapping works properly and things like that.
+				it <a href="#">also supports</a> <strong>HTML CONTENT</strong>
+				<h3>Which is kinda nice</h3> 
+				]]> 
+			</modal>
+		</interactive-message>
+		<message from="API" to="Merchant server" content="Return status of the payment"></message>
+		<note actor="Merchant server" content="If payment is verified, complete the order"></note>
 	</actions>
 </sequence-diagram>
