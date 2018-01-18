@@ -1,0 +1,46 @@
+{
+	"actors": [
+		{
+			"name": "Checkout SDK",
+			"location": "Adyen",
+			"icon": "icons/sdk.svg"
+		},
+		{
+			"name": "App",
+			"location": "Shopper",
+			"icon": "icons/sdk.svg"
+		},
+		{
+			"name": "Server",
+			"location": "Merchant",
+			"icon": "icons/sdk.svg"
+		},
+		{
+			"name": "Checkout API",
+			"location": "Adyen",
+			"icon": "icons/sdk.svg"
+		}
+	],
+	"actions": [
+		{
+			"type": "message",
+			"from": "App",
+			"to": "Server",
+			"content": "Start checkout process"
+		},
+		{
+			"type": "interactive-message",
+			"from": "Server",
+			"to": "Checkout API",
+			"content": "call /setup",
+			"children": [
+				{
+					"type": "modal",
+					"content": "<h3>This supports html too</h3>"
+				}
+			]
+		}
+	]
+}
+
+//this is actually getting a lot longer than the XML, because it's not as nice to put things in the same line in JSON objects

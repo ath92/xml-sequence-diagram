@@ -15,6 +15,16 @@
 	padding: 20px;
 }
 
+.interactive-message > div {
+	padding: 10px;
+	text-align: center;
+	line-height: 1.8em;
+}
+
+.message{
+	text-align: center;
+}
+
 *{
 	font-family: Helvetica, arial, sans-serif;
 }

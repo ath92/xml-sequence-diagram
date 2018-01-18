@@ -29,7 +29,7 @@
 		<note actor="SDK" content="Render payment methods and handle user input" offset-y="-100" offset-x="100"></note>
 		<message from="SDK" to="Client" content="fire chckt.beforeComplete hook"></message>
 		<note actor="SDK" content="Render result of the payment"></note>
-		<message from="Client" to="Merchant server" content="pass the payload to your server"></message>
+		<message from="Client" to="Merchant server" content="pass the payload to your server" offset-y="-100"></message>
 		<interactive-message from="Merchant server" to="API" content="call /verify with the payload">
 			<modal><![CDATA[ 
 				Some content that is quite long so we can also test if wrapping works properly and things like that.
